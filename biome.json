@@ -1,11 +1,20 @@
 {
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "files": {
+    "ignore": ["src/index.css"]
+  },
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
     "lineWidth": 120
   },
   "linter": {
-    "enabled": true
+    "enabled": true,
+    "rules": {
+      "a11y": {
+        "useAltText": "off"
+      }
+    }
   },
   "organizeImports": {
     "enabled": true
