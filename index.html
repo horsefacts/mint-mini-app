@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NFT Mint Mini App</title>
+
+    <!--
+      CONCEPT 4: Embeds via Meta Tags
+
+      The Vite plugin (vite.config.ts) automatically injects a fc:miniapp meta tag here
+      at build time from the config in src/config.ts. The tag looks like this:
+
+      <meta name="fc:miniapp" content='{"version":"1","imageUrl":"...","button":{...}}'>
+
+      This meta tag tells Farcaster how to display your mini app when shared in casts.
+      When users share a link to your app, Farcaster reads this tag to create a rich embed
+      with an image and button that launches the mini app.
+
+      See vite.config.ts for the plugin implementation!
+    -->
   </head>
   <body>
     <div id="root"></div>

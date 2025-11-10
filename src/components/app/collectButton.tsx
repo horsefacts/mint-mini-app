@@ -1,6 +1,6 @@
-import { sdk } from "@farcaster/frame-sdk";
-import { farcasterFrame } from "@farcaster/frame-wagmi-connector";
-import { useEffect, useRef, useState } from "react";
+import { sdk } from "@farcaster/miniapp-sdk";
+import { farcasterMiniApp } from "@farcaster/miniapp-wagmi-connector";
+import { useEffect, useState } from "react";
 import { parseEther } from "viem";
 import { useAccount, useConnect, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 
@@ -30,32 +30,32 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
 
   const isPending = isLoadingTxData || isWriting || isConfirming;
 
-  const successHandled = useRef(false);
-
+  // Call onCollect when transaction is confirmed
   useEffect(() => {
-    if (isSuccess && !successHandled.current) {
-      successHandled.current = true;
+    if (isSuccess && hash) {
       onCollect();
       setHash(undefined);
-      successHandled.current = false;
     }
-  }, [isSuccess, onCollect]);
+  }, [isSuccess, hash, onCollect]);
 
   const handleClick = async () => {
     try {
+      // If minting is closed, prompt to add the mini app for notifications
       if (!isMinting) {
-        sdk.actions.addFrame();
+        sdk.actions.addMiniApp();
         return;
       }
 
+      // Reset state for new transaction
       setHash(undefined);
-      successHandled.current = false;
 
+      // Step 1: Connect wallet if not connected
       if (!isConnected || !address) {
-        connect({ connector: farcasterFrame() });
+        connect({ connector: farcasterMiniApp() });
         return;
       }
 
+      // Step 2: Prepare and send the mint transaction
       setIsLoadingTxData(true);
 
       const hash = await writeContractAsync({
@@ -67,13 +67,13 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
         chainId: contractConfig.chain.id,
       });
 
+      // Step 3: Wait for transaction confirmation (handled by useEffect)
       setHash(hash);
     } catch (error) {
       if (!isUserRejectionError(error)) {
         onError(error instanceof Error ? error.message : "Something went wrong.");
       }
       setHash(undefined);
-      successHandled.current = false;
     } finally {
       setIsLoadingTxData(false);
     }
@@ -97,7 +97,7 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
           </AnimatedBorder>
         ) : (
           <Button className="w-full" onClick={handleClick} disabled={isPending}>
-            {!isConnected && isMinting ? "Connect" : isMinting ? "Collect" : "Add Frame"}
+            {!isConnected && isMinting ? "Connect" : isMinting ? "Collect" : "Add Mini App"}
           </Button>
         )}
       </div>

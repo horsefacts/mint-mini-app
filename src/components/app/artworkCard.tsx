@@ -1,4 +1,4 @@
-import { sdk } from "@farcaster/frame-sdk";
+import { sdk } from "@farcaster/miniapp-sdk";
 import { useCallback } from "react";
 import { cn } from "../../lib/cn";
 import { Avatar, AvatarImage } from "../ui/avatar";
@@ -81,7 +81,7 @@ export function ArtworkCard({
           <p className="text-sm mb-4">
             {isMinting
               ? description
-              : "This mint is closed. Don't miss the next one! Add this frame to get featured mint notifications."}
+              : "This mint is closed. Don't miss the next one! Add this mini app to get featured mint notifications."}
           </p>
         </div>
         {children}

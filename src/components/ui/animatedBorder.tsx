@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 interface AnimatedBorderProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ const AnimatedBorder = ({ children }: AnimatedBorderProps) => {
   return (
     <div className="relative">
       <div className="absolute inset-0">
-        <svg className="w-full h-full">
+        <svg className="w-full h-full" aria-hidden="true">
           <defs>
             <linearGradient id="borderGradient">
               <stop offset="0%" stopColor="var(--color-active-foreground)" stopOpacity="0" />

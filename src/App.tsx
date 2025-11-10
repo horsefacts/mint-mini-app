@@ -1,4 +1,16 @@
-import { sdk } from "@farcaster/frame-sdk";
+/**
+ * CONCEPT 2: Mini Apps Use the Farcaster SDK for Native Capabilities
+ *
+ * The Farcaster Mini App SDK provides access to native features:
+ * - sdk.actions.ready(): Signal the app is loaded (hides splash screen)
+ * - sdk.actions.addMiniApp(): Prompt user to add this mini app
+ * - sdk.actions.viewProfile(): Open a user's profile
+ * - sdk.actions.composeCast(): Open the composer with pre-filled content
+ *
+ * See usage throughout the components!
+ */
+
+import { sdk } from "@farcaster/miniapp-sdk";
 import { useEffect, useState } from "react";
 
 import { ArtworkCard } from "./components/app/artworkCard";
@@ -8,6 +20,8 @@ import { MintSuccessSheet } from "./components/app/mintSuccessSheet";
 import { mintMetadata } from "./config";
 
 function App() {
+  // IMPORTANT: Call sdk.actions.ready() when your app is loaded
+  // Without this, users will see an infinite loading screen!
   useEffect(() => {
     sdk.actions.ready();
   }, []);

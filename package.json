@@ -10,9 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@farcaster/frame-sdk": "latest",
-    "@farcaster/frame-wagmi-connector": "latest",
-    "@tanstack/react-query": "5.45.1",
+    "@farcaster/miniapp-sdk": "^0.2.1",
+    "@farcaster/miniapp-wagmi-connector": "^1.0.0",
+    "@tanstack/react-query": "^5.62.11",
     "clsx": "^2.1.1",
     "lucide-react": "^0.503.0",
     "react": "^18.3.1",
@@ -21,19 +21,19 @@
     "tailwindcss": "^4.1.4",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2",
-    "viem": "latest",
+    "viem": "^2.21.54",
     "vite-plugin-meta-tags": "^0.1.4",
-    "wagmi": "latest"
+    "wagmi": "^2.12.29"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.0",
+    "@biomejs/biome": "^1.9.4",
     "@tailwindcss/vite": "^4.1.4",
     "@types/node": "^22.15.3",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "@wagmi/cli": "latest",
-    "typescript": "^5.4.5",
-    "vite": "^5.2.11"
+    "@vitejs/plugin-react": "^4.3.4",
+    "@wagmi/cli": "^2.1.18",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.7"
   }
 }
