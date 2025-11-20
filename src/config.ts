@@ -26,7 +26,8 @@ export const mintMetadata = {
     // Your Farcaster ID (FID)
     fid: 3621,
     // Your profile image URL
-    profileImageUrl: "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/27ebb092-6f26-4397-6027-8c90d909ce00/original",
+    profileImageUrl:
+      "https://imagedelivery.net/BXluQx4ige9GuW0Ia56BHw/58b5b261-45cb-4651-9bf3-c5d3dcd4cf00/original",
   },
   chain: "Base",
   // Mint price in ETH
@@ -93,9 +94,9 @@ export const contractConfig = {
     },
   ] as const as Abi,
   // Vector ID for Highlight protocol - specific to your mint setup
-  vectorId: 6506,
+  vectorId: 8155,
   // Referrer address for this mint
-  referrer: "0x075b108fC0a6426F9dEC9A5c18E87eB577D1346a" as Address,
+  referrer: "0xd16713A5D4Eb7E3aAc9D2228eB72f6f7328FADBD" as Address,
 } as const;
 
 /**
