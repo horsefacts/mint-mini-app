@@ -5,11 +5,18 @@ run = "pnpm run dev"
 channel = "stable-24_05"
 
 [deployment]
-deploymentTarget = "static"
+deploymentTarget = "autoscale"
 build = ["pnpm", "run", "build"]
+run = "pnpm run preview"
 publicDir = "dist"
+
+[[ports]]
+localPort = 5000
+externalPort = 5000
 
 [[ports]]
 localPort = 5173
 externalPort = 80
-exposeLocalhost = true
+
+[agent]
+expertMode = true

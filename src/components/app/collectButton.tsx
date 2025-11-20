@@ -2,7 +2,12 @@ import { sdk } from "@farcaster/miniapp-sdk";
 import { farcasterMiniApp } from "@farcaster/miniapp-wagmi-connector";
 import { useEffect, useState } from "react";
 import { parseEther } from "viem";
-import { useAccount, useConnect, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
+import {
+  useAccount,
+  useConnect,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
 
 import { contractConfig, mintMetadata } from "../../config";
 import { isUserRejectionError } from "../../lib/errors";
@@ -17,7 +22,12 @@ interface CollectButtonProps {
   isMinting: boolean;
 }
 
-export function CollectButton({ priceEth, onCollect, onError, isMinting }: CollectButtonProps) {
+export function CollectButton({
+  priceEth,
+  onCollect,
+  onError,
+  isMinting,
+}: CollectButtonProps) {
   const { isConnected, address } = useAccount();
   const { connect } = useConnect();
   const { writeContractAsync, isPending: isWriting } = useWriteContract();
@@ -71,7 +81,9 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
       setHash(hash);
     } catch (error) {
       if (!isUserRejectionError(error)) {
-        onError(error instanceof Error ? error.message : "Something went wrong.");
+        onError(
+          error instanceof Error ? error.message : "Something went wrong.",
+        );
       }
       setHash(undefined);
     } finally {
@@ -91,13 +103,20 @@ export function CollectButton({ priceEth, onCollect, onError, isMinting }: Colle
 
         {isPending ? (
           <AnimatedBorder>
-            <Button className="w-full relative bg-[var(--color-active)] text-[var(--color-active-foreground)]" disabled>
+            <Button
+              className="w-full relative bg-[var(--color-active)] text-[var(--color-active-foreground)]"
+              disabled
+            >
               {isMinting ? "Collecting..." : "Adding..."}
             </Button>
           </AnimatedBorder>
         ) : (
           <Button className="w-full" onClick={handleClick} disabled={isPending}>
-            {!isConnected && isMinting ? "Connect" : isMinting ? "Collect" : "Add Mini App"}
+            {!isConnected && isMinting
+              ? "Connect"
+              : isMinting
+                ? "Collect"
+                : "Add Mini App"}
           </Button>
         )}
       </div>
