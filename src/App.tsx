@@ -10,7 +10,7 @@
  * See usage throughout the components!
  */
 
-import { sdk } from "@farcaster/miniapp-sdk";
+import { sdk, Context } from "@farcaster/miniapp-sdk";
 import { useEffect, useState } from "react";
 
 import { ArtworkCard } from "./components/app/artworkCard";
@@ -23,21 +23,21 @@ function App() {
   // IMPORTANT: Call sdk.actions.ready() when your app is loaded
   // Without this, users will see an infinite loading screen!
   useEffect(() => {
-    /* const loadContext = async () => {
+    const loadContext = async () => {
       const context = await sdk.context;
       setContext(context);
     };
-    loadContext(); */
+    loadContext();
     sdk.actions.ready();
   }, []);
 
-  // const [context, setContext] = useState<Context.MiniAppContext>();
+  const [context, setContext] = useState<Context.MiniAppContext>();
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState<string>();
 
   return (
     <div className="w-full min-h-screen flex flex-col">
-      {/* <div className="text-center py-2">
+      <div className="text-center py-2">
         Hello, {context?.user.username}!
         {context?.user.pfpUrl && (
           <img
@@ -47,7 +47,7 @@ function App() {
             alt="Profile"
           />
         )}
-      </div> */}
+      </div>
       <ArtworkCard
         imageUrl={mintMetadata.imageUrl}
         name={mintMetadata.name}
